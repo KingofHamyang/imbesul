@@ -412,67 +412,7 @@ static void garbage_collection(void)
 	s.gc++;
 	int blk_to_erase = -1;
 	int max_val2 = 0;
-	/*for (int i = 0; i < N_BLOCKS; i++)
-	{
-		if (i == spare_block_N)
-		{
-			continue;
-		}
-		if (stream_id[i] != now_write_stream)
-		{
-			continue;
-		}
-		//printf("%d ", stream_id[i]);
 
-		//	printf("invalid pages per block %d : %d\n", i, cnt);
-		if (max_val2 < invalid_pages_per_block[i])
-		{
-			max_val2 = invalid_pages_per_block[i];
-			blk_to_erase = i;
-		}
-	}
-	if (blk_to_erase != -1)
-	{
-		invalid_pages_per_block[blk_to_erase] = 0;
-
-		written_pages[spare_block_N] = 0;
-		stream_id[blk_to_erase] = -1;
-		stream_id[spare_block_N] = -1;
-		//printf("blk to erase %d %d\n", blk_to_erase, spare_block_N);
-		for (int i = 0; i < N_PAGES_PER_BLOCK; i++)
-		{
-			if (PPN_invaild[blk_to_erase * N_PAGES_PER_BLOCK + i] == 0)
-			{
-				int blk = spare_block_N;
-				int page = written_pages[blk];
-				u32 data;
-				u32 spare;
-				written_pages[spare_block_N]++;
-				nand_read(blk_to_erase, i, &data, &spare);
-				nand_write(blk, page, data, spare);
-				s.gc_write++;
-				//	printf("unsingend = %d %d %d\n", i, data, spare);
-				L2Ptable[spare] = blk * N_PAGES_PER_BLOCK + page;
-			}
-			else
-			{
-				PPN_invaild[blk_to_erase * N_PAGES_PER_BLOCK + i] = 0;
-			}
-		}
-		nand_erase(blk_to_erase);
-
-		block_age[spare_block_N] = block_age[blk_to_erase];
-		spare_block_N = blk_to_erase;
-		block_age[blk_to_erase] = 0;
-
-		written_pages[blk_to_erase] = 0;
-		full_page_number--;
-
-		return;
-	}
-	else
-	{*/
-	//printf("Asdf ");
 	while (1)
 	{
 		int check = find();
@@ -538,56 +478,6 @@ return type to anything you want
 	//printf("asdfasf : %d", max_val);
 #endif
 
-	/*
-	int stream1 = 0;
-	int stream2 = 0;
-	int stream3 = 0;
-	for (int i = 0; i < N_BLOCKS; i++)
-	{
-		if (stream_id[i] == 0)
-			stream1++;
-		else if (stream_id[i] == 3)
-			stream2++;
-		else if (stream_id[i] == 6)
-			stream3++;
-	}
-	int check3 = 0;
-	for (int i = 0; i < N_BLOCKS; i++)
-	{
-		if (stream_id[i] == now_write_stream)
-		{
-			if (invalid_pages_per_block[i] != 0)
-				check3++;
-		}
-	}
-
-	if (blk_to_erase == -1)
-	{
-		printf("stream : %d %d %d now : %d \n", stream1, stream2, stream3, check3);
-	}
-	int max_val3 = 0;
-	if (blk_to_erase == -1)
-	{
-		//printf("%d no matched\n", now_write_stream);
-		for (int i = 0; i < N_BLOCKS; i++)
-		{
-			if (i == spare_block_N)
-			{
-				continue;
-			}
-
-			//	printf("invalid pages per block %d : %d\n", i, cnt);
-			if (max_val3 < invalid_pages_per_block[i])
-			{
-				max_val3 = invalid_pages_per_block[i];
-				blk_to_erase = i;
-			}
-		}
-		if (stream_id[blk_to_erase] == 6)
-		{
-			printf("s %d %d \n", now_write_stream, stream_id[blk_to_erase]);
-		}
-	}*/
 	//printf("%d", blk_to_erase);
 	invalid_pages_per_block[blk_to_erase] = 0;
 
