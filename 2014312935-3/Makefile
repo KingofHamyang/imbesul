@@ -9,11 +9,11 @@
 PREFIX		=
 CC			= $(PREFIX)gcc
 CXX			= $(PREFIX)g++
-WORKLOAD	= 	-DMULTI_HOT_COLD
-				#-DHOT_COLD 
+WORKLOAD	= 	 -DMULTI_HOT_COLD #-DHOT_COLD  
+				 
 				# if -DHOT_COLD is not set, WORKLOAD will be random as a Project #2
 
-FTL			=   -DMULTI_STREAM -DCOST_BENEFIT
+FTL			= # -DCOST_BENEFIT #-DMULTI_STREAM 
 
 			# if both -DMULTI_STREAM and -DCOST_BENEFIT is not set, FTL should be a greedy FTL
 
